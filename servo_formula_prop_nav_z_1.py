@@ -1,5 +1,6 @@
 # расчет для изменения координат по всем трем осям X, Y и Z с 
 # использованием пропорциональной навигации.
+
 import math
 import time
 
@@ -20,20 +21,23 @@ while True:
     dy = target_y - y
     dz = target_z - z
     
+    # Вычислите углы между направлением движения и направлениями к цели в трех измерениях:
     angle_to_target_x = math.atan2(dy, dx)
     angle_to_target_y = math.atan2(dz, math.sqrt(dx**2 + dy**2))
+    angle_to_target_z = math.atan2(dz, math.sqrt(dx**2 + dy**2))
     
+    # Вычислите угловые скорости изменения направления движения (angular rates) 
+    # для каждой из осей X, Y и Z с использованием коэффициентов PN (Kx, Ky, Kz):
     angular_rate_x = Kx * angle_to_target_x
     angular_rate_y = Ky * angle_to_target_y
-    
-    # Вычисление угла для оси Z
-    angle_to_target_z = math.atan2(dz, math.sqrt(dx**2 + dy**2))
     angular_rate_z = Kz * angle_to_target_z
     
+    # Преобразуйте угловые скорости в скорости изменения координат dx, dy и dz:
     delta_dx = math.cos(angle_to_target_x) * angular_rate_x
     delta_dy = math.sin(angle_to_target_x) * angular_rate_x
     delta_dz = math.sin(angle_to_target_y) * angular_rate_y
     
+    # Обновите текущие координаты (x, y, z) в соответствии с изменением dx, dy и dz:
     x += delta_dx
     y += delta_dy
     z += delta_dz
