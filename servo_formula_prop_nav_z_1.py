@@ -24,7 +24,7 @@ while True:
     # Вычислите углы между направлением движения и направлениями к цели в трех измерениях:
     angle_to_target_x = math.atan2(dy, dx)
     angle_to_target_y = math.atan2(dz, math.sqrt(dx**2 + dy**2))
-    angle_to_target_z = math.atan2(dz, math.sqrt(dx**2 + dy**2))
+    angle_to_target_z = math.atan2(dz, math.sqrt(dx**2 + dy**2)) # # ?? angle_to_target_z = math.atan2(dy, dx)  # Angle in the XY plane, assuming positive Z is up
     
     # Вычислите угловые скорости изменения направления движения (angular rates) 
     # для каждой из осей X, Y и Z с использованием коэффициентов PN (Kx, Ky, Kz):
